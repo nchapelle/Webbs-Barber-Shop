@@ -1,0 +1,85 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  font-family: sans-serif;
+}
+
+/* .App {
+  text-align: center;
+} */
+
+.App header {
+box-shadow: 0px 3px 10px rgba(0,0,0,0.3);
+position: sticky;
+top: 0px;
+background: white;
+}
+
+.App nav{
+  min-height: 10vh;
+  margin: auto;
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.App nav h1, .App nav ul{
+  font-size: 1.5rem;
+  flex: 1;
+}
+
+.App nav ul{
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+}
+
+.App nav a{
+  color: black;
+  text-decoration: none;
+}
+
+.App section {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+ .App section h2 {
+   font-size: 5rem;
+   color: white;
+ }
+
+ .App .Home{
+   background: linear-gradient(to right top, #11998e, #38ef7d);
+ }
+ .App .Appointments{
+  background: linear-gradient(to right top, #093028, #237A57);
+}
+.App .Contact{
+  background: linear-gradient(to right top, #11998e, #38ef7d);
+}
+.App .Bubble{
+  position: absolute;
+  z-index: -2;
+  background: linear-gradient(to right top, #11998e, #38ef7d);
+}
+
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
