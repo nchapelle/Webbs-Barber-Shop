@@ -6,8 +6,8 @@ function Nav(){
             <h1>Webb's Barber Shop</h1>
             <ul>
                 <li><a data-page="Home" href="/">Home</a></li>
-                <li><a data-page="Appointments" href="/">Appointments</a></li>
-                <li><a data-page="Contact" href="/">Contact</a></li>
+                <li><a data-page="Appointments" href="/register">Register</a></li>
+                <li><a data-page="Contact" href="/login">Login</a></li>
             </ul>
         </nav>   
     );
