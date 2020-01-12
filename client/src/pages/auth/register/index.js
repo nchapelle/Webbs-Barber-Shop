@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useContext, useEffect } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -12,6 +12,8 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import AuthContext from "../../../context/auth/authContext"
+import AuthState from "../../../context/auth/AuthState";
 
 function Copyright() {
   return (
@@ -46,8 +48,47 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function SignUp(props) {
+const SignUp = props => {
   const classes = useStyles();
+  const authContext = useContext(AuthContext);
+
+  // once this is true, it will reroute
+  // useEffect( ()=> {
+  //   if (isAuthenticated)
+  //   props.history.push("/");
+
+    
+  // })
+  const [user, setUser] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    password2: ""
+  });
+
+  const {firstName, lastName, email, password,password2} = user;
+
+  const onChange = e => setUser({...user, [e.target.name]: e.target.value});
+
+  const onSubmit = e => {
+    e.preventDefault();
+    if (firstName === "" || lastName === "" || email === "" || password === ""){
+      console.log("insert all fields")
+    }
+    else if (password !== password2) {
+      console.log("passwords don't match")
+    }
+    else {
+      authContext.register({
+        firstName,
+        lastName, 
+        email, 
+        password,
+        password2}
+    )
+    }
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -59,11 +100,12 @@ export default function SignUp(props) {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={onSubmit}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
-                onChange={props.handleInputChange}
+              //state goes here value= {name of state}
+                onChange={onChange}
                 autoComplete="fname"
                 name="firstName"
                 variant="outlined"
@@ -71,12 +113,13 @@ export default function SignUp(props) {
                 fullWidth
                 id="firstName"
                 label="First Name"
+                value={firstName}
                 autoFocus
               />
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
-                onChange={props.handleInputChange}
+                onChange={onChange}
                 variant="outlined"
                 required
                 fullWidth
@@ -84,11 +127,12 @@ export default function SignUp(props) {
                 label="Last Name"
                 name="lastName"
                 autoComplete="lname"
+                value={lastName}
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
-                onChange={props.handleInputChange}
+                onChange={onChange}
                 variant="outlined"
                 required
                 fullWidth
@@ -96,11 +140,12 @@ export default function SignUp(props) {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                value={email}
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
-                onChange={props.handleInputChange}
+                onChange={onChange}
                 variant="outlined"
                 required
                 fullWidth
@@ -109,11 +154,12 @@ export default function SignUp(props) {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                value={password}
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
-                onChange={props.handleInputChange}
+                onChange={onChange}
                 variant="outlined"
                 required
                 fullWidth
@@ -122,6 +168,7 @@ export default function SignUp(props) {
                 type="password"
                 id="password2"
                 autoComplete="confirm-password"
+                value={password2}
               />
             </Grid>
             <Grid item xs={12}>
@@ -155,3 +202,5 @@ export default function SignUp(props) {
     </Container>
   );
 }
+
+export default SignUp;
