@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useContext } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -12,6 +12,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import AuthContext from "../../../context/auth/authContext";
 
 function Copyright() {
   return (
@@ -46,8 +47,29 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function SignIn(props) {
+const SignIn = props => {
   const classes = useStyles();
+  const authContext = useContext(AuthContext);
+  const [user, setUser] = useState({
+    email: "",
+    password: ""
+  });
+
+  const { email, password } = user;
+
+  const onChange = e => setUser({ ...user, [e.target.name]: e.target.value });
+
+  const onSubmit = e => {
+    e.preventDefault();
+    if (email === "" || password === "") {
+      console.log("insert all fields");
+    } else {
+      authContext.login({
+        email,
+        password
+      });
+    }
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -59,9 +81,9 @@ export default function SignIn(props) {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={onSubmit}>
           <TextField
-            onChange={props.handleInputChange}
+            onChange={onChange}
             variant="outlined"
             margin="normal"
             required
@@ -73,7 +95,7 @@ export default function SignIn(props) {
             autoFocus
           />
           <TextField
-            onChange={props.handleInputChange}
+            onChange={onChange}
             variant="outlined"
             margin="normal"
             required
@@ -104,7 +126,7 @@ export default function SignIn(props) {
               </Link>
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="/login" variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>
@@ -116,4 +138,6 @@ export default function SignIn(props) {
       </Box>
     </Container>
   );
-}
+};
+
+export default SignIn;

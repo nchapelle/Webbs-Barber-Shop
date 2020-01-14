@@ -36,7 +36,7 @@ router.post("/register", (req, res) => {
           newUser.password = hash;
           newUser
             .save()
-            .then(user => res.json(user))
+            .then(user => res.json(user).redirect("/calendar"))
             .catch(err => console.log(err));
         });
       });
@@ -79,10 +79,12 @@ router.post("/login", (req, res) => {
             expiresIn: 31556926 // 1 year in seconds
           },
           (err, token) => {
-            res.json({
-              success: true,
-              token: "Bearer " + token
-            });
+            res
+              .json({
+                success: true,
+                token: "Bearer " + token
+              })
+              .redirect("/calendar");
           }
         );
       } else {
