@@ -8,6 +8,9 @@ const users = require("./routes/api/users");
 
 const app = express();
 
+const PORT = process.env.PORT || 6969;
+
+
 //Bodyparser Middleware
 app.use(
   bodyParser.urlencoded({
@@ -36,6 +39,5 @@ require("./config/passport")(passport);
 // Routes
 app.use("/api/users", users);
 
-const port = process.env.PORT || 6969;
 
-app.listen(port, () => console.log("Server Running on " + port));
+app.listen(PORT, () => console.log("Server Running on " + PORT));
