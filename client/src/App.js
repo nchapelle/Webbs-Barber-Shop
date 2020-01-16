@@ -2,10 +2,10 @@ import React, { useEffect } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Nav from "./components/nav";
-import Home from "./pages/home";
-import Calendar from "./pages/calendar"
-import Login from "./pages/auth/login";
-import Register from "./pages/auth/register";
+import Home from "./components/pages/home";
+import Calendar from "./components/pages/calendar"
+import Login from "./components/pages/auth/login";
+import Register from "./components/pages/auth/register";
 import AuthState from "./context/auth/AuthState";
 
 function App() {
