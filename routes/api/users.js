@@ -7,7 +7,11 @@ const keys = require("../../config/keys");
 const validateRegisterInput = require("../../validation/register");
 const validateLoginInput = require("../../validation/login");
 // Load User model
-const User = require("../../models/user");
+const User = require("../../models/User");
+
+router.post("/", (req, res) => {
+  res.sendfile(path.join((__dirname = "client/build/index.html")));
+});
 
 // @route POST api/users/register
 // @desc Register user
@@ -79,11 +83,10 @@ router.post("/login", (req, res) => {
             expiresIn: 31556926 // 1 year in seconds
           },
           (err, token) => {
-            res
-              .json({
-                success: true,
-                token: "Bearer " + token
-              })
+            res.json({
+              success: true,
+              token: "Bearer " + token
+            });
           }
         );
       } else {
