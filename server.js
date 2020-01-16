@@ -24,11 +24,9 @@ app.use(compression());
 
 
 //DB config
-const db = require("./config/keys").mongoURI;
-
 //connect to MongoDB
 mongoose
-  .connect(db, process.env.mongoURI || {  useNewUrlParser: true })
+  .connect(process.env.MONGODB_URI || "mongodb://localhost/reactreadinglist")
   .then(() => console.log("MongoDB Successfully Connected"))
   .catch(err => console.log(err));
 
