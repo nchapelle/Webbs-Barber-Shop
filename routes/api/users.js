@@ -9,10 +9,9 @@ const validateLoginInput = require("../../validation/login");
 // Load User model
 const User = require("../../models/User");
 
-router.post("/", (req, res) => {
-  res.sendfile(path.join((__dirname = "client/build/index.html")));
-});
-
+router.get('/', function (req, res) {
+  res.send('Wiki home page');
+})
 // @route POST api/users/register
 // @desc Register user
 // @access Public
