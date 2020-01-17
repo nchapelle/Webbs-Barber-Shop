@@ -10,6 +10,8 @@ const app = express();
 
 const PORT = process.env.PORT || 6969;
 
+//stating we start at build location
+app.use(express.static("client/build"));
 
 //Bodyparser Middleware
 app.use(
