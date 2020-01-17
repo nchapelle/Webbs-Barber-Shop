@@ -4,9 +4,14 @@
   "description": "MERN Web Application",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "client": "cd client && npm run start",
+    "seed": "node scripts/seedDB.js",
+    "install": "cd client && npm install",
+    "build": "cd client && npm run build",
+    "heroku-postbuild": "npm run build"
   },
   "author": "Nolan Chapelle",
   "license": "ISC",
@@ -18,6 +23,7 @@
     "compression": "^1.7.4",
     "concurrently": "^5.0.2",
     "express": "^4.17.1",
+    "if-env": "^1.0.4",
     "is-empty": "^1.2.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.8.6",
