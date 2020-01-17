@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "MERN Web Application",
   "main": "server.js",
+  "engines": {
+    "node": "10.16.0"
+  },
   "scripts": {
     "start": "concurrently \"nodemon server.js\" \"npm run client\"",
     "client": "cd client && npm run start",
