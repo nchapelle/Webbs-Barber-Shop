@@ -8,8 +8,8 @@
 # testing
 /coverage
 
-# production
-/client
+# # production
+# /client
 /build
 
 # misc
